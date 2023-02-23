@@ -1,0 +1,20 @@
+:root {
+    --font: 'Zilla Slab', serif;
+    --light-gray : #e7e7e7;
+    --Orange: #ED5728;
+    --white: #fff;
+    --black: #202020;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; 
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: var(--font);
+}
