@@ -129,3 +129,9 @@ input {
         padding: 0 10rem;
     }
 }
+
+@media (min-width: 640px) {
+    .title {
+        font-size:6rem;
+    }
+}
