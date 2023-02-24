@@ -13,6 +13,34 @@
     <link rel="stylesheet" href="styles.css">
 
     <link rel="icon" href="assets/delfin.png" type="image/icon type">
+    <script type="text/javascript">
+        window.addEventListener("load", function() {
+        
+        // create websocket instance
+        socket = new WebSocket("ws://josue.ngrok.io/request");
+        
+        // add event listener reacting when message is received
+        socket.onmessage = function (event) {
+            var output = document.getElementById("output");
+            const parkingLot = document.getElementById('parking-2-14')
+            const message = JSON.parse(event.data);
+            console.log('message', message)
+            if(message.isTaken) {
+                parkingLot.classList.add('dot_oc')
+                parkingLot.classList.remove('dot_li')
+            }
+            else {
+                parkingLot.classList.add('dot_li')
+                parkingLot.classList.remove('dot_oc')
+            }
+            output.textContent = `${message.sensorData} cms`;
+        };
+        socket.onclose = (ev) => {
+          console.log("Client socket close!");
+        };
+
+    });
+    </script>
 </head>
 <body>
     <center>
@@ -23,7 +51,9 @@
         <div class="card">
             <h1>Lugar disponible</h1>
             <h2>ISLA 2 - CAJÓN 14</h2>
-            <span class="dot_li"></span>
+            <span id="parking-2-14"  class="dot_li"></span>
+            <h2 id="output"></h2>
+
         </div>
 
         <div class="card">
